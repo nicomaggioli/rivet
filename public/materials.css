@@ -12,7 +12,7 @@ figure {
   padding: 96px 6%;
 }
 .site-header {
-  width: min(1268px, 88%);
+  width: min(88%, calc(1440px - 12%));
   max-width: calc(100% - 40px);
   border-radius: 8px;
   padding: 14px 16px 14px 26px;
@@ -327,7 +327,7 @@ button.text-link {
   color: #748075;
 }
 .film-inner {
-  max-width: 1310px;
+  max-width: 1440px;
   padding-top: 84px;
   padding-bottom: 42px;
 }
@@ -363,6 +363,7 @@ button.text-link {
 }
 .film-shortcuts button span {
   color: #f3f5f2;
+  text-align: left;
 }
 .film-shortcuts a {
   color: #dde3de;
@@ -451,9 +452,6 @@ button.text-link {
 }
 .faq h2 {
   font-size: 47px;
-}
-.faq .eyebrow {
-  margin-bottom: 24px;
 }
 .closing {
   background: #65fc9f;
@@ -622,7 +620,7 @@ button.text-link {
 .contact-layout {
   max-width: 1440px;
   margin: auto;
-  gap: 9%;
+  gap: 45px 9%;
   padding-top: 176px;
   align-items: start;
 }
@@ -659,7 +657,7 @@ button.text-link {
 .walkthrough-prep {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12%;
+  gap: 9%;
   border-top: 1px solid var(--line);
   padding-top: 55px;
 }
@@ -880,7 +878,7 @@ button.text-link {
     padding: 35px 6%;
   }
   .brand-story {
-    grid-template-columns: 0.6fr 1.4fr;
+    grid-template-columns: auto 1fr;
     gap: 8%;
   }
   .brand-story h2 {
@@ -1450,7 +1448,10 @@ summary {
     font-size: 13px;
   }
   .ai-dashboard-choices button {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     min-height: 96px;
     padding: 12px 10px;
     font-size: 11px;

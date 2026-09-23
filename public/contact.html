@@ -22,20 +22,35 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="The Rhodo logo with the lines “From SAM.gov to a winning proposal.” and “AI-assisted federal pursuits for A/E firms.”"
+    />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image:alt"
+      content="The Rhodo logo with the lines “From SAM.gov to a winning proposal.” and “AI-assisted federal pursuits for A/E firms.”"
+    />
     <link rel="icon" href="assets/favicon.svg?v=22" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=24" />
-    <link rel="stylesheet" href="materials.css?v=22" />
-    <link rel="stylesheet" href="brand.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=26" />
+    <link rel="stylesheet" href="materials.css?v=23" />
+    <link rel="stylesheet" href="brand.css?v=10" />
     <link
       rel="preload"
-      href="assets/fonts/geist.ttf"
+      href="assets/fonts/geist.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
-    <script src="app.js?v=29" defer></script>
+    <link
+      rel="preload"
+      href="assets/fonts/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script src="app.js?v=34" defer></script>
     <link
       rel="canonical"
       href="https://nicomaggioli.github.io/rhodo/contact.html"
@@ -51,16 +66,16 @@
       <a class="brand" href="index.html" aria-label="Rhodo home"
         ><img
           src="assets/rhodo-logo-light.svg?v=22"
-          width="148"
-          height="33"
+          width="194"
+          height="64"
           alt="Rhodo"
       /></a>
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="system.html">The&nbsp;product</a
-        ><a href="pricing.html">Working&nbsp;together</a>
-        <a href="brand-directions.html">Our&nbsp;story</a>
+        ><a href="working-together.html">Working&nbsp;together</a>
+        <a href="story.html">Our&nbsp;story</a>
       </nav>
-      <a class="nav-cta" href="contact.html"
+      <a class="nav-cta" href="contact.html" aria-current="page"
         >Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a
       ><button
         class="menu-toggle"
@@ -68,13 +83,13 @@
         aria-controls="mobile-menu"
         aria-expanded="false"
       >
-        Menu <span>+</span>
+        Menu <span aria-hidden="true">+</span>
       </button>
       <nav id="mobile-menu" aria-label="Mobile navigation" hidden>
         <a href="system.html">The&nbsp;product</a
-        ><a href="pricing.html">Working&nbsp;together</a
-        ><a href="brand-directions.html">Our&nbsp;story</a
-        ><a href="contact.html">Book a&nbsp;walkthrough ↗</a>
+        ><a href="working-together.html">Working&nbsp;together</a
+        ><a href="story.html">Our&nbsp;story</a
+        ><a href="contact.html" aria-current="page">Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
     <main id="main">
@@ -87,7 +102,7 @@
             how the workflow could fit your&nbsp;firm.
           </p>
           <div class="contact-agenda">
-            <h2>What we’ll walk&nbsp;through</h2>
+            <h2>What we’ll walk&nbsp;through.</h2>
             <article>
               <span class="eyebrow">01 / Find the&nbsp;fit</span>
               <p>
@@ -113,7 +128,7 @@
         </div>
         <div class="contact-form">
           <p class="eyebrow">Tell us where to&nbsp;start</p>
-          <form id="callform">
+          <form id="callform" method="post">
             <div class="field-pair">
               <label
                 >Your&nbsp;name<input
@@ -139,7 +154,7 @@
             /></label>
             <div class="field-pair">
               <label
-                >Team size<select name="team_size">
+                ><span>Team size <span class="required-mark">(optional)</span></span><select name="team_size">
                   <option value="">Select size</option>
                   <option>1 to 10</option>
                   <option>11 to 25</option>
@@ -147,7 +162,7 @@
                   <option>51+</option>
                 </select></label
               ><label
-                >Primary discipline<select name="discipline">
+                ><span>Primary discipline <span class="required-mark">(optional)</span></span><select name="discipline">
                   <option value="">Select discipline</option>
                   <option>Architecture</option>
                   <option>Engineering</option>
@@ -165,26 +180,25 @@
               ></textarea>
             </label>
             <p class="delivery-note" id="delivery-note">
-              This form prepares an introduction you can copy or save. Nothing
+              This form prepares a request you can copy or save. Nothing
               is sent and no meeting is&nbsp;booked.
             </p>
             <button class="button black" type="submit">
-              Prepare introduction <span aria-hidden="true">↗</span>
+              Prepare request <span aria-hidden="true">↗</span>
             </button>
           </form>
           <section
             id="form-result"
             class="form-result"
             hidden
-            aria-live="polite"
           >
-            <h2>Your introduction is&nbsp;ready.</h2>
+            <h2 id="form-result-title" tabindex="-1">Your request is&nbsp;ready.</h2>
             <p id="result-message">
               Nothing has been sent and no meeting is booked. Copy or save your
-              introduction&nbsp;below.
+              request&nbsp;below.
             </p>
             <label class="sr-only" for="request-text"
-              >Prepared&nbsp;introduction</label
+              >Prepared&nbsp;request</label
             ><textarea id="request-text" rows="8" readonly></textarea>
             <div class="result-actions">
               <button id="copy-request" class="button black">
@@ -194,6 +208,7 @@
               </button>
             </div>
           </section>
+          <p id="form-status" class="sr-only" role="status"></p>
         </div>
       </section>
       <section
@@ -225,20 +240,20 @@
           ><img
             src="assets/rhodo-logo-light.svg?v=22"
             alt="Rhodo"
-            width="175"
-            height="39"
+            width="194"
+            height="64"
         /></a>
         <nav aria-label="Footer navigation">
-          <a href="system.html">The&nbsp;product ↗</a
-          ><a href="pricing.html">Working&nbsp;together ↗</a
-          ><a href="brand-directions.html">Our&nbsp;story ↗</a
-          ><a href="contact.html">Book a&nbsp;walkthrough ↗</a>
+          <a href="system.html">The&nbsp;product <span aria-hidden="true">↗</span></a
+          ><a href="working-together.html">Working&nbsp;together <span aria-hidden="true">↗</span></a
+          ><a href="story.html">Our&nbsp;story <span aria-hidden="true">↗</span></a
+          ><a href="contact.html">Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
       <div class="footer-bottom">
         <span>Built for independent A/E&nbsp;firms.</span
         ><span>© 2026&nbsp;Rhodo</span
-        ><a href="index.html#main">Back to&nbsp;top ↑</a>
+        ><a href="#main">Back to&nbsp;top <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
   </body>

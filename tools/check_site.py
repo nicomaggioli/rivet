@@ -25,7 +25,7 @@ for name,page in pages.items():
   if ref.startswith(('http:','https:','data:','mailto:')):
    if '.example' in ref:errors.append(f'{name}: placeholder destination {ref}')
    continue
-  u=urlsplit(ref);target=ROOT/unquote(u.path) if u.path else page.path;count+=1
+  u=urlsplit(ref);path=unquote(u.path);path=path[len('/rhodo/'):] if path.startswith('/rhodo/') else path;target=ROOT/path if path else page.path;count+=1
   if not target.is_file():errors.append(f'{name}: missing {ref}');continue
   if u.fragment and target.suffix=='.html' and target.name in pages and unquote(u.fragment) not in pages[target.name].ids:errors.append(f'{name}: broken anchor {ref}')
 for css in ROOT.glob('*.css'):

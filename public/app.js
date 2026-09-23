@@ -24,6 +24,9 @@
   menu
     ?.querySelectorAll("a")
     .forEach((a) => a.addEventListener("click", closeMenu));
+  document.addEventListener("click", (e) => {
+    if (menu && !menu.hidden && !header.contains(e.target)) closeMenu();
+  });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !menu.hidden) {
       closeMenu();
@@ -49,8 +52,9 @@
     tab.addEventListener("click", () => selectTab(tab));
     tab.addEventListener("keydown", (e) => {
       let next = i;
-      if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
-      else if (e.key === "ArrowLeft")
+      if (e.key === "ArrowRight" || e.key === "ArrowDown")
+        next = (i + 1) % tabs.length;
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp")
         next = (i + tabs.length - 1) % tabs.length;
       else if (e.key === "Home") next = 0;
       else if (e.key === "End") next = tabs.length - 1;
@@ -66,31 +70,8 @@
     const stagePlay = teaserStage.querySelector(".trailer-play");
     // Native controls stay in the markup as a no-JS fallback.
     teaser.controls = false;
-    const playTeaser = () => {
-      const hadFocus = document.activeElement === stagePlay;
-      teaserStage.classList.add("is-playing");
-      teaser.controls = true;
-      if (stagePlay) stagePlay.hidden = true;
-      if (hadFocus) teaser.focus();
-      teaser.play().catch(() => {});
-    };
-    document.querySelectorAll("[data-play-teaser]").forEach((button) =>
-      button.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (!teaserStage.contains(button))
-          teaserStage.scrollIntoView({
-            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-              ? "auto"
-              : "smooth",
-            block: "center",
-          });
-        playTeaser();
-      }),
-    );
-    teaserStage.addEventListener("click", () => {
-      if (!teaserStage.classList.contains("is-playing")) playTeaser();
-    });
-    teaser.addEventListener("ended", () => {
+    let failed = false;
+    const resetTeaser = () => {
       const hadFocus = teaserStage.contains(document.activeElement);
       teaserStage.classList.remove("is-playing");
       teaser.controls = false;
@@ -98,6 +79,49 @@
         stagePlay.hidden = false;
         if (hadFocus) stagePlay.focus();
       }
+    };
+    const playTeaser = (fromButton) => {
+      if (failed) return;
+      teaserStage.classList.add("is-playing");
+      teaser.controls = true;
+      if (stagePlay) stagePlay.hidden = true;
+      if (fromButton) teaser.focus({ preventScroll: true });
+      teaser.play().catch(() => {});
+    };
+    const showFailure = () => {
+      if (failed) return;
+      failed = true;
+      resetTeaser();
+      const note = document.createElement("p");
+      note.className = "trailer-error";
+      note.setAttribute("role", "status");
+      note.innerHTML =
+        'The trailer couldn’t load. <a href="demo-transcript.html">Read the product tour transcript</a>.';
+      teaserStage.after(note);
+    };
+    // Skipped phone sources also fire "error"; only the last one means none loaded.
+    [...teaser.querySelectorAll("source")]
+      .pop()
+      ?.addEventListener("error", showFailure);
+    document.querySelectorAll("[data-play-teaser]").forEach((button) =>
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeMenu();
+        if (!teaserStage.contains(button))
+          teaserStage.scrollIntoView({
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+            block: "center",
+          });
+        playTeaser(true);
+      }),
+    );
+    teaserStage.addEventListener("click", () => {
+      if (!teaserStage.classList.contains("is-playing")) playTeaser(false);
+    });
+    teaser.addEventListener("ended", () => {
+      resetTeaser();
       teaser.load();
     });
     document.addEventListener("visibilitychange", () => {
@@ -110,9 +134,11 @@
 
   const aiVideo = document.querySelector("#ai-dashboard-video");
   if (aiVideo) {
+    const first = document.querySelector("[data-ai-clip][aria-pressed='true']");
+    if (first?.dataset.srcSmall && matchMedia("(max-width: 800px), (max-height: 500px)").matches)
+      aiVideo.src = first.dataset.srcSmall;
     const choices = [...document.querySelectorAll("[data-ai-clip]")];
     const caption = document.querySelector("#ai-dashboard-caption");
-    const captions = document.querySelector("#ai-dashboard-captions");
     const narration = document.querySelector("[data-ai-narration]");
     choices.forEach((button) =>
       button.addEventListener("click", () => {
@@ -120,9 +146,24 @@
           choice.setAttribute("aria-pressed", String(choice === button)),
         );
         aiVideo.pause();
-        aiVideo.src = button.dataset.src;
+        const small = matchMedia("(max-width: 800px), (max-height: 500px)").matches;
+        aiVideo.src =
+          (small && button.dataset.srcSmall) || button.dataset.src;
         aiVideo.poster = button.dataset.poster;
-        if (captions) captions.src = button.dataset.captions;
+        const oldTrack = aiVideo.querySelector("track");
+        const mode = aiVideo.textTracks[0]?.mode || "disabled";
+        // Hide the old captions first, or their last cue can stay on screen.
+        if (aiVideo.textTracks[0]) aiVideo.textTracks[0].mode = "disabled";
+        oldTrack?.remove();
+        const track = document.createElement("track");
+        Object.assign(track, {
+          kind: "captions",
+          srclang: "en",
+          label: "English",
+          src: button.dataset.captions,
+        });
+        aiVideo.append(track);
+        if (aiVideo.textTracks[0]) aiVideo.textTracks[0].mode = mode;
         aiVideo.setAttribute("aria-label", button.dataset.title);
         caption.textContent = button.dataset.caption.replace(
           / (\S+)$/,
@@ -172,11 +213,16 @@
         .trim()
         .replace(/^\d+:\d+\s+/, "");
       if (featurePosition)
-        featurePosition.textContent = `Feature ${index + 1} of ${chapterButtons.length}`;
+        featurePosition.textContent = `Chapter ${index + 1} of ${chapterButtons.length}`;
       if (featureTitle) featureTitle.textContent = title;
-      if (previousFeature) previousFeature.disabled = index === 0;
-      if (nextFeature)
-        nextFeature.disabled = index === chapterButtons.length - 1;
+      const atStart = index === 0;
+      const atEnd = index === chapterButtons.length - 1;
+      if (atStart && document.activeElement === previousFeature)
+        nextFeature?.focus();
+      if (atEnd && document.activeElement === nextFeature)
+        previousFeature?.focus();
+      if (previousFeature) previousFeature.disabled = atStart;
+      if (nextFeature) nextFeature.disabled = atEnd;
     }
     function cancelPendingStart() {
       startRequest += 1;
@@ -297,6 +343,12 @@
       const text = `Rhodo walkthrough request\n\nName: ${d.get("name")}\nEmail: ${d.get("email")}\nFirm: ${d.get("firm")}\nTeam size: ${d.get("team_size") || "Not specified"}\nDiscipline: ${d.get("discipline") || "Not specified"}\n\nCurrent challenge:\n${d.get("workflow")}`;
       request.value = text;
       result.hidden = false;
+      // Show the whole request without an inner scroll (up to a point).
+      request.style.height = "auto";
+      request.style.height = `${Math.min(request.scrollHeight + 2, 480)}px`;
+      document
+        .querySelector("#form-result-title")
+        ?.focus({ preventScroll: true });
       if (validEmail) {
         const a = document.createElement("a");
         a.href = `mailto:${config.contactEmail}?subject=${encodeURIComponent("Rhodo walkthrough: " + d.get("firm"))}&body=${encodeURIComponent(text)}`;
@@ -314,11 +366,21 @@
       try {
         await navigator.clipboard.writeText(request.value);
         copy.textContent = "Copied";
-        setTimeout(() => (copy.textContent = "Copy request"), 2500);
+        const status = document.querySelector("#form-status");
+        if (status) status.textContent = "Request copied to the clipboard.";
+        setTimeout(() => {
+          copy.textContent = "Copy request";
+          if (status) status.textContent = "";
+        }, 2500);
       } catch {
         request.focus();
         request.select();
-        copy.textContent = "Select and copy the text";
+        copy.textContent = "Text selected";
+        const status = document.querySelector("#form-status");
+        if (status)
+          status.textContent =
+            "The request text is selected. Copy it with your device’s copy command.";
+        setTimeout(() => (copy.textContent = "Copy request"), 4000);
       }
     });
     document.querySelector("#save-request").addEventListener("click", () => {

@@ -155,9 +155,6 @@ dialog .eyebrow::before,
   border: 0;
   background: var(--ink);
   overflow: hidden;
-  box-shadow:
-    0 40px 90px -30px #0b0d1166,
-    0 0 0 1px #0b0d1114;
 }
 .trailer-screen > video {
   display: block;
@@ -173,11 +170,6 @@ dialog .eyebrow::before,
   pointer-events: none;
 }
 .trailer-play {
-  transition:
-    transform 0.25s,
-    opacity 0.25s;
-}
-.trailer-play {
   position: absolute;
   left: clamp(16px, 3.2%, 44px);
   bottom: clamp(16px, 4%, 48px);
@@ -189,8 +181,10 @@ dialog .eyebrow::before,
   color: var(--ink);
   font-size: 15px;
   font-weight: 500;
-  box-shadow: 0 16px 50px -12px #0b0d1199;
-  transition: transform 0.25s;
+  border: 0;
+  transition:
+    transform 0.25s,
+    opacity 0.25s;
   --cut-sm: 12px;
 }
 .trailer-play:hover {
@@ -255,19 +249,14 @@ dialog .eyebrow::before,
 /* Workflow tabs: mint tag + ink stage behind product frames. */
 .workflow-menu > button[aria-selected="true"] {
   box-shadow: inset 3px 0 0 var(--mint);
-  padding-left: 14px;
-  transition: padding 0.25s;
 }
 .workflow-menu > button {
-  transition:
-    padding 0.25s,
-    color 0.2s;
+  transition: color 0.2s;
 }
 .workflow .feature-image {
   padding: 0;
   aspect-ratio: 16 / 9;
   background: var(--ink);
-  box-shadow: 0 30px 70px -30px #0b0d1166;
 }
 .workflow .feature-image img {
   width: 100%;
@@ -282,10 +271,7 @@ dialog .eyebrow::before,
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    url("assets/brand/mark-outline-ink.svg") right -140px top -120px / 520px
-      520px no-repeat,
-    var(--mint-soft);
+  background: var(--mint-soft);
 }
 .ai-dashboard-choices {
   --cut-sm: 14px;
@@ -311,9 +297,6 @@ dialog .eyebrow::before,
 }
 .demo-screen {
   border: 0;
-  box-shadow:
-    0 50px 100px -30px #000,
-    0 0 0 1px #ffffff1a;
 }
 .demo-play {
   --cut-sm: 12px;
@@ -370,7 +353,8 @@ dialog .eyebrow::before,
   align-items: center;
   gap: 10px;
 }
-.working-home figcaption::before {
+.working-home figcaption::before,
+.working-image figcaption::before {
   content: "";
   width: 9px;
   height: 10px;
@@ -419,8 +403,9 @@ dialog .eyebrow::before,
   isolation: isolate;
   overflow: hidden;
   background:
-    url("assets/brand/mark-ink-on-mint.svg") right 22% top -160px / 560px 560px
-      no-repeat,
+    url("assets/brand/mark-ink-on-mint.svg")
+      right calc(max(6%, (100% - 1440px) / 2 + 6%) + 250px) top -160px / 560px
+      560px no-repeat,
     var(--mint);
 }
 .closing .button.black {
@@ -468,10 +453,12 @@ dialog .eyebrow::before,
   content: "";
   position: absolute;
   z-index: -1;
-  right: -90px;
-  bottom: -150px;
-  width: 520px;
-  height: 520px;
+  /* The R's right edge lines up with the content column (the glyph sits
+     8.6/64 of its box in from the right). */
+  right: calc(max(6%, (100% - 1440px) / 2 + 6%) - 32px);
+  top: 128px;
+  width: 240px;
+  height: 240px;
   background: url("assets/brand/mark-mint.svg") center / contain no-repeat;
   pointer-events: none;
 }
@@ -485,10 +472,11 @@ dialog .eyebrow::before,
 .footer::after {
   content: "";
   display: block;
-  height: clamp(120px, 19vw, 300px);
-  margin: 30px -6% 0;
-  background: url("assets/brand/footer-lockup.svg") center bottom / 100% auto no-repeat;
-  opacity: 1;
+  /* The wordmark runs off the page edge, cut at the same line at every width. */
+  aspect-ratio: 190 / 34;
+  margin: 34px calc(50% - 50vw) 0;
+  background: url("assets/brand/footer-lockup.svg") center top / 100% auto
+    no-repeat;
 }
 .footer-bottom {
   position: relative;
@@ -548,7 +536,7 @@ dialog {
 }
 @media (max-width: 580px) {
   .trailer-section {
-    padding: 0 5% 48px;
+    padding: 0 6% 48px;
   }
   .trailer-play {
     left: auto;
@@ -577,12 +565,6 @@ dialog {
       url("assets/brand/mark-ink-on-mint.svg") right -120px bottom -120px /
         340px 340px no-repeat,
       var(--mint);
-  }
-  .page-hero::after {
-    width: 200px;
-    height: 200px;
-    right: -60px;
-    bottom: -70px;
   }
 }
 
@@ -616,4 +598,555 @@ dialog {
 .closing :is(.button, a):focus-visible,
 .page-hero :is(.button, a):focus-visible {
   outline-color: var(--ink);
+}
+
+
+/* ---- Polish pass ------------------------------------------------------- */
+
+/* Wide screens: inner heroes, the closing band and the footer share the
+   content column's left edge. */
+.page-hero {
+  padding-inline: max(6%, calc((100% - 1440px) / 2 + 6%));
+}
+.closing,
+.footer {
+  padding-inline: max(6%, calc((100% - 1440px) / 2 + 6%));
+}
+
+/* Chamfered frames that also have a 1px border: draw the border along the
+   cut so the corner never looks broken. */
+.contact-form,
+.ai-dashboard-choices {
+  position: relative;
+}
+.contact-form::before,
+.ai-dashboard-choices::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: var(--cut);
+  height: var(--cut);
+  background: linear-gradient(
+    to bottom left,
+    transparent 50%,
+    var(--frame-line) 50%,
+    var(--frame-line) calc(50% + 1px),
+    transparent calc(50% + 1px)
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+.contact-form {
+  --frame-line: #e0e4db;
+}
+.ai-dashboard-choices {
+  --cut: var(--cut-sm);
+  --frame-line: var(--mint-line);
+}
+.button.outline {
+  clip-path: none;
+}
+.system-image > img {
+  border: 0;
+}
+
+/* Eyebrow bullets line up with the first line when a label wraps. */
+.eyebrow {
+  align-items: flex-start;
+}
+.eyebrow::before {
+  margin-top: calc(0.8em - 5px);
+  margin-top: calc((1lh - 10px) / 2);
+}
+
+/* FAQ: the mint tile stays square; only the plus turns into a cross. */
+.faq summary span,
+.faq details[open] summary span {
+  transform: none;
+  font-size: 0;
+}
+.faq summary span::before {
+  content: "+";
+  font-size: 17px;
+  transition: transform 0.2s;
+}
+.faq details[open] summary span::before {
+  transform: rotate(45deg);
+}
+
+/* Mobile menu shows when it is open. */
+.menu-toggle span {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.menu-toggle[aria-expanded="true"] span {
+  transform: rotate(45deg);
+}
+
+/* Wrapped list items hang under their first line, not under the arrow. */
+li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 15px;
+}
+li::before {
+  margin-right: 0;
+}
+
+/* Footer: the logo link hugs the logo; small links are comfortable targets. */
+.footer-top > a {
+  align-self: flex-start;
+  /* the logo's R starts 8.6/194 into the image: line it up with the rule */
+  margin-left: -8.6px;
+}
+.footer-bottom {
+  font-size: 12px;
+}
+.footer-bottom a {
+  display: inline-block;
+  padding-block: 13px;
+  margin-block: -13px;
+}
+
+/* Contrast: inactive tabs, notes and captions meet AA. */
+.workflow-menu > button {
+  color: #5f6862;
+}
+.workflow-menu > button > span:first-child {
+  color: #4f5752;
+}
+.delivery-note {
+  color: #5f6862;
+}
+.working-home figcaption,
+.working-image figcaption {
+  color: #5f6862;
+}
+input,
+select,
+textarea {
+  border-color: #858c87;
+}
+
+/* Selected states read without relying on mint alone. */
+.workflow-menu > button[aria-selected="true"] {
+  box-shadow: inset 3px 0 0 var(--ink);
+}
+.ai-dashboard-choices button[aria-pressed="true"] {
+  box-shadow: inset 0 -3px 0 var(--ink);
+}
+
+/* Contact selects match the text inputs and look empty until chosen. */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 54px;
+  line-height: 1.6;
+  padding-right: 40px;
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230b0d11' stroke-width='1.6'/%3E%3C/svg%3E")
+    right 14px center / 12px 8px no-repeat;
+}
+select:has(option[value=""]:checked) {
+  color: #6b726e;
+}
+
+/* Demo dialog: fits the viewport with every chapter visible, and the title
+   bar covers the padding while the dialog scrolls. */
+dialog video {
+  max-height: max(220px, calc(95dvh - 340px));
+}
+.dialog-top {
+  top: -25px;
+  margin-top: -25px;
+  padding-top: 25px;
+}
+@media (max-width: 700px) {
+  .dialog-top {
+    top: -15px;
+    margin-top: -15px;
+    padding-top: 15px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .dialog-top {
+    top: -14px;
+    margin-top: -14px;
+    padding-top: 14px;
+  }
+}
+.chapters button:hover {
+  background: transparent;
+  color: #e2e9e3;
+  border-color: #414941;
+}
+@media (hover: hover) {
+  .chapters button:hover {
+    border-color: var(--mint);
+    color: var(--mint);
+  }
+}
+.chapters button[aria-current="true"],
+.chapters button[aria-current="true"]:hover {
+  background: var(--mint);
+  color: var(--ink);
+  border-color: var(--mint);
+}
+
+/* Tablet widths: the AI heading never runs into its paragraph. */
+@media (min-width: 701px) and (max-width: 800px) {
+  .learning-copy .ai-learning-heading {
+    font-size: 40px;
+  }
+}
+
+/* Two-sentence headings keep each sentence together on phones. */
+.sentence {
+  display: inline-block;
+}
+
+/* Tabs use spans styled as before (valid inside buttons). */
+.workflow-menu .tab-copy {
+  display: block;
+}
+.workflow-menu .tab-title {
+  display: block;
+  font-family: Geist, Arial, sans-serif;
+  font-weight: 450;
+  font-size: 25px;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+.workflow-menu .tab-text {
+  display: block;
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 10px;
+  max-width: 240px;
+}
+
+/* Required fields are marked on screen. */
+.required-mark {
+  color: #5f6862;
+  font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+  .workflow-menu .tab-title {
+    font-size: 22px;
+  }
+}
+@media (max-width: 720px) {
+  .trailer-play {
+    left: auto;
+    right: 10px;
+    bottom: 10px;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    font-size: 11px;
+  }
+  .trailer-play .play-glyph {
+    width: 30px;
+    height: 30px;
+    font-size: 9px;
+  }
+  .trailer-play small {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .workflow-menu .tab-title {
+    font-size: 25px;
+  }
+  .workflow-menu .tab-text {
+    max-width: 350px;
+    margin-top: 7px;
+  }
+}
+@media (max-width: 580px) {
+  .workflow-menu .tab-title {
+    font-size: 23px;
+  }
+  .workflow-menu .tab-text {
+    font-size: 11px;
+  }
+  .footer-bottom {
+    font-size: 11px;
+  }
+  .architecture-hero .eyebrow {
+    font-size: 10px;
+  }
+  .demo-play small {
+    font-size: 10px;
+  }
+  .film-shortcuts button,
+  .film-shortcuts a {
+    font-size: 11px;
+  }
+  .demo-note {
+    font-size: 11px;
+  }
+  .page-hero::after {
+    display: none;
+  }
+}
+@media (max-width: 1099px) {
+  .page-hero::after {
+    display: none;
+  }
+}
+
+/* Generous text spacing (WCAG 1.4.12): long headline lines may wrap. */
+@media (max-width: 400px) {
+  .workflow-heading > span,
+  .closing-headline span,
+  .ai-learning-heading > span,
+  .contact-intro h1 span {
+    white-space: normal;
+  }
+  .step > *,
+  .brand-story > div,
+  .story-purpose > div {
+    min-width: 0;
+  }
+  .step p,
+  .step li,
+  .brand-story p,
+  .story-purpose p {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Centered labels: the bullet sits inline before the first word when the
+   label wraps. */
+.architecture-hero .eyebrow,
+.pricing-note .eyebrow,
+.dark-note .eyebrow {
+  display: block;
+}
+.architecture-hero .eyebrow::before,
+.pricing-note .eyebrow::before,
+.dark-note .eyebrow::before {
+  display: inline-block;
+  margin: 0 6px 0 0;
+  vertical-align: -1px;
+}
+.footer-top nav a {
+  gap: 0.4em;
+}
+
+/* List arrows are decoration: screen readers skip them. */
+li::before {
+  content: "↗";
+  content: "↗" / "";
+}
+
+/* Workflow panels take the site's focus ring. */
+[role="tabpanel"]:focus-visible {
+  outline: 3px solid #1a9f53;
+  outline-offset: 5px;
+}
+
+/* The short-version label sits on white: ink bullet. */
+.trailer-meta .eyebrow::before {
+  background-image: url("assets/brand/shard-ink.svg");
+}
+
+/* Hovering an AI example is lighter than the selected one. */
+.ai-dashboard-choices button:not([aria-pressed="true"]):hover {
+  box-shadow: inset 0 -1px 0 var(--mint-line);
+  background: #f3fff7;
+}
+
+/* One grey for empty fields and placeholders. */
+input::placeholder,
+textarea::placeholder {
+  color: #6b726e;
+}
+
+/* The not-found page fills the window. */
+.not-found {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+.not-found main {
+  flex: 1 0 auto;
+}
+
+@media (max-width: 800px) {
+  .footer-top nav {
+    gap: 12px 22px;
+  }
+}
+@media (max-width: 900px) {
+  .contact-intro,
+  .contact-form {
+    max-width: none;
+  }
+}
+
+/* Shown only if the trailer file cannot load. */
+.trailer-error {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #474f4a;
+}
+.trailer-error a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* From tablets up the closing mark bleeds off the lower right, behind the
+   button, clear of the headline at every width. */
+@media (min-width: 581px) {
+  .closing {
+    background:
+      url("assets/brand/mark-ink-on-mint.svg") right -130px bottom -150px /
+        440px 440px no-repeat,
+      var(--mint);
+  }
+}
+
+/* Phones: logo above a two-column link grid. */
+@media (max-width: 580px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer-top nav {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0 32px;
+  }
+}
+
+/* ---- QA round 3 ------------------------------------------------------- */
+
+/* Grey bands and hairlines run edge to edge on wide screens, with their
+   content on the shared column. */
+.founder-section,
+.learning-detail,
+.responsibilities,
+.practice-line,
+.walkthrough-prep {
+  max-width: none;
+  padding-inline: max(6%, calc((100% - 1440px) / 2 + 6%));
+}
+
+/* Not-found page: the grey hero fills the window above the footer, and the
+   button clears the mint R. */
+.not-found main {
+  display: flex;
+  flex-direction: column;
+}
+.not-found .page-hero {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+.not-found .page-intro {
+  margin-top: 64px;
+}
+
+/* Links inside intro copy read as links. */
+.page-intro > p a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* The phone menu shows the current page, like the desktop nav. */
+#mobile-menu a[aria-current] {
+  color: var(--mint);
+}
+
+/* The trailer button's subtitle lines up under its title. */
+.trailer-play {
+  text-align: left;
+}
+
+/* Section-head links stay on one line. */
+.section-head > .text-link {
+  flex: none;
+}
+
+/* Touch-sized targets. */
+.desktop-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+@media (pointer: coarse) {
+  .chapters button {
+    min-height: 44px;
+  }
+  .dialog-close {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* The request heading takes focus only to move the reading position. */
+#form-result-title:focus {
+  outline: none;
+}
+
+/* Landscape phones: the videos fit the screen height with their controls. */
+@media (max-height: 500px) and (orientation: landscape) {
+  html {
+    scroll-padding-top: 12px;
+  }
+  .trailer-screen,
+  .trailer-meta,
+  .ai-dashboard-demo {
+    max-width: calc((100svh - 24px) * 16 / 9);
+    margin-inline: auto;
+  }
+}
+
+/* Small tablets: link rows split two and two instead of three plus one. */
+@media (min-width: 581px) and (max-width: 760px) {
+  .footer-top nav {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0 32px;
+  }
+}
+@media (min-width: 581px) and (max-width: 680px) {
+  .film-shortcuts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+  }
+  .film-shortcuts button,
+  .film-shortcuts a {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 400px) {
+  .film-shortcuts {
+    column-gap: 8px;
+  }
+  .film-shortcuts button,
+  .film-shortcuts a {
+    font-size: 10px;
+    gap: 6px;
+  }
+}
+
+/* Smaller footer logos keep the R on the rule's edge. */
+@media (max-width: 700px) {
+  .footer-top > a {
+    margin-left: -6px;
+  }
+}
+@media (max-width: 580px) {
+  .footer-top > a {
+    margin-left: -5.5px;
+  }
 }

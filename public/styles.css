@@ -1,12 +1,16 @@
 @font-face {
   font-family: Geist;
-  src: url("assets/fonts/geist.ttf") format("truetype");
+  src:
+    url("assets/fonts/geist.woff2") format("woff2"),
+    url("assets/fonts/geist.ttf") format("truetype");
   font-weight: 100 900;
   font-display: swap;
 }
 @font-face {
   font-family: Inter;
-  src: url("assets/fonts/inter.ttf") format("truetype");
+  src:
+    url("assets/fonts/inter.woff2") format("woff2"),
+    url("assets/fonts/inter.ttf") format("truetype");
   font-weight: 100 900;
   font-display: swap;
 }
@@ -460,17 +464,6 @@ textarea:focus-visible {
 .workflow-menu > button > span:last-child {
   margin-left: auto;
   font-size: 20px;
-}
-.workflow-menu h3 {
-  font-size: 25px;
-  letter-spacing: -0.035em;
-  line-height: 1.2;
-}
-.workflow-menu p {
-  font-size: 12px;
-  line-height: 1.7;
-  margin-top: 10px;
-  max-width: 240px;
 }
 .workflow-panels {
   min-width: 0;
@@ -1040,9 +1033,6 @@ dialog video {
     gap: 5%;
     grid-template-columns: 1fr 1.1fr;
   }
-  .workflow-menu h3 {
-    font-size: 22px;
-  }
   .workflow-menu > button {
     gap: 14px;
   }
@@ -1186,13 +1176,6 @@ dialog video {
   }
   .workflow-menu > button {
     padding: 20px 0;
-  }
-  .workflow-menu h3 {
-    font-size: 25px;
-  }
-  .workflow-menu p {
-    max-width: 350px;
-    margin-top: 7px;
   }
   .feature-image {
     aspect-ratio: 1.6;
@@ -1470,12 +1453,6 @@ dialog video {
   }
   .workflow .section-head {
     margin-bottom: 30px;
-  }
-  .workflow-menu h3 {
-    font-size: 23px;
-  }
-  .workflow-menu p {
-    font-size: 11px;
   }
   .feature-image {
     padding: 12px;

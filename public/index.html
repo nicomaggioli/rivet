@@ -6,7 +6,7 @@
     <title>From SAM.gov to a winning proposal | Rhodo</title>
     <meta
       name="description"
-      content="AI assisted federal pursuits for architecture and engineering firms. Discover relevant SAM.gov opportunities, match your experience, and prepare stronger SF330 proposals."
+      content="AI-assisted federal pursuits for architecture and engineering firms: find relevant SAM.gov work, match your experience, and prepare stronger SF330s."
     />
     <meta name="theme-color" content="#0b0d11" />
     <meta
@@ -15,7 +15,7 @@
     />
     <meta
       property="og:description"
-      content="AI assisted federal pursuits for architecture and engineering firms. Discover relevant SAM.gov opportunities, match your experience, and prepare stronger SF330 proposals."
+      content="AI-assisted federal pursuits for architecture and engineering firms: find relevant SAM.gov work, match your experience, and prepare stronger SF330s."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rhodo" />
@@ -25,20 +25,35 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="The Rhodo logo with the lines “From SAM.gov to a winning proposal.” and “AI-assisted federal pursuits for A/E firms.”"
+    />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image:alt"
+      content="The Rhodo logo with the lines “From SAM.gov to a winning proposal.” and “AI-assisted federal pursuits for A/E firms.”"
+    />
     <link rel="icon" href="assets/favicon.svg?v=22" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=24" />
-    <link rel="stylesheet" href="materials.css?v=22" />
-    <link rel="stylesheet" href="brand.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=26" />
+    <link rel="stylesheet" href="materials.css?v=23" />
+    <link rel="stylesheet" href="brand.css?v=10" />
     <link
       rel="preload"
-      href="assets/fonts/geist.ttf"
+      href="assets/fonts/geist.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
-    <script src="app.js?v=29" defer></script>
+    <link
+      rel="preload"
+      href="assets/fonts/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script src="app.js?v=34" defer></script>
     <link rel="canonical" href="https://nicomaggioli.github.io/rhodo/" />
     <meta property="og:url" content="https://nicomaggioli.github.io/rhodo/" />
   </head>
@@ -48,14 +63,14 @@
       <a class="brand" href="index.html" aria-label="Rhodo home"
         ><img
           src="assets/rhodo-logo-light.svg?v=22"
-          width="148"
-          height="33"
+          width="194"
+          height="64"
           alt="Rhodo"
       /></a>
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="system.html">The&nbsp;product</a
-        ><a href="pricing.html">Working&nbsp;together</a>
-        <a href="brand-directions.html">Our&nbsp;story</a>
+        ><a href="working-together.html">Working&nbsp;together</a>
+        <a href="story.html">Our&nbsp;story</a>
       </nav>
       <a class="nav-cta" href="contact.html"
         >Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a
@@ -65,13 +80,13 @@
         aria-controls="mobile-menu"
         aria-expanded="false"
       >
-        Menu <span>+</span>
+        Menu <span aria-hidden="true">+</span>
       </button>
       <nav id="mobile-menu" aria-label="Mobile navigation" hidden>
         <a href="system.html">The&nbsp;product</a
-        ><a href="pricing.html">Working&nbsp;together</a
-        ><a href="brand-directions.html">Our&nbsp;story</a
-        ><a href="contact.html">Book a&nbsp;walkthrough ↗</a>
+        ><a href="working-together.html">Working&nbsp;together</a
+        ><a href="story.html">Our&nbsp;story</a
+        ><a href="contact.html">Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
     <main id="main">
@@ -89,7 +104,7 @@
           <div class="hero-actions">
             <button class="button black" data-play-teaser>
               <span class="play-glyph" aria-hidden="true">▶</span> Watch the
-              trailer <span class="button-time" data-teaser-length>0:32</span>
+              trailer <span class="button-time" data-teaser-length>0:38</span>
             </button>
             <a class="hero-text-link" href="contact.html"
               >Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a
@@ -108,13 +123,18 @@
             controls
             playsinline
             preload="none"
-            poster="assets/rhodo-trailer-poster.webp?v=4"
+            poster="assets/rhodo-trailer-poster.webp?v=31"
             aria-label="Rhodo trailer"
           >
-            <source src="assets/rhodo-trailer.mp4?v=4" type="video/mp4" />
+            <source
+              media="(max-width: 800px), (max-height: 500px)"
+              src="assets/rhodo-trailer-720.mp4?v=31"
+              type="video/mp4"
+            />
+            <source src="assets/rhodo-trailer.mp4?v=31" type="video/mp4" />
             <track
               kind="captions"
-              src="assets/rhodo-trailer.vtt?v=4"
+              src="assets/rhodo-trailer.vtt?v=31"
               srclang="en"
               label="English"
             />
@@ -123,7 +143,7 @@
             <span class="play-glyph" aria-hidden="true">▶</span
             ><span
               >Watch the trailer<small
-                ><span data-teaser-length>0:32</span> · Rhodo in brief</small
+                ><span data-teaser-length>0:38</span> · Rhodo in brief</small
               ></span
             >
           </button>
@@ -131,7 +151,7 @@
         <div class="trailer-meta">
           <p class="eyebrow">The short version</p>
           <button type="button" data-trailer>
-            Watch the full demo <span data-demo-length>2:18</span>
+            Watch the product tour <span data-demo-length>2:18</span>
             <span aria-hidden="true">↗</span>
           </button>
         </div>
@@ -152,7 +172,7 @@
       <section class="section workflow" id="workflow">
         <div class="section-head">
           <div>
-            <p class="eyebrow">From the first look to the final&nbsp;review.</p>
+            <p class="eyebrow">From the first look to the final&nbsp;review</p>
             <h2 class="workflow-heading">
               <span>One place.</span> <span>The whole&nbsp;pursuit.</span>
             </h2>
@@ -165,6 +185,7 @@
           <div
             class="workflow-menu"
             role="tablist"
+            aria-orientation="vertical"
             aria-label="Product features"
           >
             <button
@@ -175,13 +196,11 @@
               aria-controls="panel-discover"
             >
               <span>01</span>
-              <div>
-                <h3>Find your next&nbsp;fit.</h3>
-                <p>
-                  Relevant opportunities, with the reasoning behind&nbsp;them.
-                </p>
-              </div>
-              <span>↗</span></button
+              <span class="tab-copy">
+                <span class="tab-title">Find your next&nbsp;fit.</span>
+                <span class="tab-text">Relevant opportunities, with the reasoning behind&nbsp;them.</span>
+              </span>
+              <span aria-hidden="true">↗</span></button
             ><button
               id="tab-build"
               data-product
@@ -191,13 +210,11 @@
               tabindex="-1"
             >
               <span>02</span>
-              <div>
-                <h3>Lead with your&nbsp;experience.</h3>
-                <p>
-                  Match the work you’ve done with the people who did&nbsp;it.
-                </p>
-              </div>
-              <span>↗</span></button
+              <span class="tab-copy">
+                <span class="tab-title">Lead with your&nbsp;experience.</span>
+                <span class="tab-text">Match the work you’ve done with the people who did&nbsp;it.</span>
+              </span>
+              <span aria-hidden="true">↗</span></button
             ><button
               id="tab-review"
               data-product
@@ -207,23 +224,24 @@
               tabindex="-1"
             >
               <span>03</span>
-              <div>
-                <h3>Make the&nbsp;case.</h3>
-                <p>Bring the SF330 together, ready for your&nbsp;review.</p>
-              </div>
-              <span>↗</span>
+              <span class="tab-copy">
+                <span class="tab-title">Make the&nbsp;case.</span>
+                <span class="tab-text">Bring the SF330 together, ready for your&nbsp;review.</span>
+              </span>
+              <span aria-hidden="true">↗</span>
             </button>
           </div>
           <div class="workflow-panels">
             <section
               id="panel-discover"
               role="tabpanel"
+              tabindex="0"
               aria-labelledby="tab-discover"
             >
               <div class="feature-image">
                 <img
                   src="assets/workflow-discover.webp?v=1"
-                  alt="Real dashboard: bid recommendation, fit score and action items"
+                  alt="Actual dashboard: bid recommendation, fit score, and action items"
                   loading="lazy"
                 />
               </div>
@@ -235,13 +253,14 @@
             <section
               id="panel-build"
               role="tabpanel"
+              tabindex="0"
               aria-labelledby="tab-build"
               hidden
             >
               <div class="feature-image">
                 <img
                   src="assets/workflow-match.webp?v=1"
-                  alt="Real dashboard: selected personnel and their project experience"
+                  alt="Actual dashboard: selected personnel and their project experience"
                   loading="lazy"
                 />
               </div>
@@ -253,13 +272,14 @@
             <section
               id="panel-review"
               role="tabpanel"
+              tabindex="0"
               aria-labelledby="tab-review"
               hidden
             >
               <div class="feature-image">
                 <img
                   src="assets/workflow-prepare.webp?v=1"
-                  alt="Real dashboard: SF330 section status and compiled proposal"
+                  alt="Actual dashboard: SF330 section status and compiled proposal"
                   loading="lazy"
                 />
               </div>
@@ -275,7 +295,7 @@
         <div class="section">
           <div class="ai-dashboard-intro">
             <div class="learning-copy">
-              <p class="eyebrow">See AI inside&nbsp;Rhodo.</p>
+              <p class="eyebrow">See AI inside&nbsp;Rhodo</p>
               <h2 class="ai-learning-heading">
                 <span>Less groundwork.</span><span>More informed</span
                 ><span>decisions.</span>
@@ -297,16 +317,17 @@
             <div
               class="ai-dashboard-choices"
               role="group"
-              aria-label="Choose an AI dashboard closeup"
+              aria-label="Choose an AI dashboard close-up"
             >
               <button
                 type="button"
                 data-ai-clip="analysis"
                 aria-pressed="true"
                 aria-controls="ai-dashboard-video"
-                data-src="assets/ai-analysis.mp4?v=7"
-                data-captions="assets/ai-analysis.vtt?v=7"
-                data-poster="assets/ai-analysis.webp?v=6"
+                data-src="assets/ai-analysis.mp4?v=31"
+                data-src-small="assets/ai-analysis-720.mp4?v=31"
+                data-captions="assets/ai-analysis.vtt?v=31"
+                data-poster="assets/ai-analysis.webp?v=31"
                 data-title="AI opportunity analysis"
                 data-caption="Rhodo reads the solicitation and shows a bid recommendation, strengths, and gaps for your review."
                 data-narration="31.35"
@@ -318,9 +339,10 @@
                 data-ai-clip="matching"
                 aria-pressed="false"
                 aria-controls="ai-dashboard-video"
-                data-src="assets/ai-matching.mp4?v=7"
-                data-captions="assets/ai-matching.vtt?v=7"
-                data-poster="assets/ai-matching.webp?v=6"
+                data-src="assets/ai-matching.mp4?v=31"
+                data-src-small="assets/ai-matching-720.mp4?v=31"
+                data-captions="assets/ai-matching.vtt?v=31"
+                data-poster="assets/ai-matching.webp?v=31"
                 data-title="AI project and team recommendations"
                 data-caption="Review suggested projects, compare personnel, and see the experience connecting your proposed team."
                 data-narration="45.91"
@@ -332,9 +354,10 @@
                 data-ai-clip="feedback"
                 aria-pressed="false"
                 aria-controls="ai-dashboard-video"
-                data-src="assets/ai-feedback.mp4?v=7"
-                data-captions="assets/ai-feedback.vtt?v=7"
-                data-poster="assets/ai-feedback.webp?v=6"
+                data-src="assets/ai-feedback.mp4?v=31"
+                data-src-small="assets/ai-feedback-720.mp4?v=31"
+                data-captions="assets/ai-feedback.vtt?v=31"
+                data-poster="assets/ai-feedback.webp?v=31"
                 data-title="AI corrections and saved feedback"
                 data-caption="Tell the assistant what needs changing, then save feedback that can guide future proposal drafts."
                 data-narration="92.8"
@@ -349,20 +372,20 @@
               controls
               playsinline
               preload="none"
-              poster="assets/ai-analysis.webp?v=6"
-              src="assets/ai-analysis.mp4?v=7"
+              poster="assets/ai-analysis.webp?v=31"
+              src="assets/ai-analysis.mp4?v=31"
               aria-label="AI opportunity analysis"
               aria-describedby="ai-dashboard-caption"
             >
               <track
                 id="ai-dashboard-captions"
                 kind="captions"
-                src="assets/ai-analysis.vtt?v=7"
+                src="assets/ai-analysis.vtt?v=31"
                 srclang="en"
                 label="English"
               />
               Your browser does not support video.
-              <a href="index.html#film">Watch the full&nbsp;walkthrough.</a>
+              <a href="index.html#film">Watch the product&nbsp;tour.</a>
             </video>
             <div class="ai-dashboard-caption">
               <div>
@@ -380,7 +403,7 @@
                 data-start="31.35"
                 data-ai-narration
               >
-                See the full&nbsp;walkthrough <span aria-hidden="true">↗</span>
+                See the full product&nbsp;tour <span aria-hidden="true">↗</span>
               </button>
             </div>
           </div>
@@ -398,44 +421,47 @@
               SF330 review. A complete tour of the actual&nbsp;dashboard.
             </p>
           </div>
-          <button
-            class="demo-screen"
-            data-trailer
-            aria-label="Play the full product walkthrough"
-          >
+          <button class="demo-screen" data-trailer>
             <img
-              src="assets/demo-poster.webp?v=30"
+              src="assets/demo-poster.webp?v=31"
               width="1920"
               height="1080"
-              alt="Rhodo dashboard showing the opportunity pipeline"
+              alt=""
               loading="lazy"
             /><span class="demo-play"
               ><span class="play-glyph" aria-hidden="true">▶</span
               ><span
-                >Watch the full walkthrough<small
+                >Watch the product tour<small
                   >2:18 · Narrated dashboard&nbsp;tour</small
                 ></span
               ><span class="demo-arrow" aria-hidden="true">↗</span></span
             >
           </button>
-          <div class="film-shortcuts" aria-label="Start with a feature">
+          <div
+            class="film-shortcuts"
+            role="group"
+            aria-label="Start the tour at a chapter"
+          >
             <button data-trailer data-start="31.35">
-              0:31 <span>AI&nbsp;analysis</span> ↗</button
+              0:31 <span>AI fit&nbsp;analysis</span>
+              <span aria-hidden="true">↗</span></button
             ><button data-trailer data-start="53.33">
-              0:53 <span>Team&nbsp;selection</span> ↗</button
+              0:53 <span>The proposed&nbsp;team</span>
+              <span aria-hidden="true">↗</span></button
             ><button data-trailer data-start="92.8">
-              1:32 <span>Feedback&nbsp;&amp;&nbsp;learning</span> ↗</button
-            ><a href="demo-transcript.html">Read the&nbsp;transcript ↗</a>
+              1:32 <span>Feedback and&nbsp;learning</span>
+              <span aria-hidden="true">↗</span></button
+            ><a href="demo-transcript.html">Read the&nbsp;transcript <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
       <section class="section working-home">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Setup and ongoing&nbsp;support.</p>
-            <h2>Built around your firm. Set up with&nbsp;you.</h2>
+            <p class="eyebrow">Setup and ongoing&nbsp;support</p>
+            <h2><span class="sentence">Built around your firm.</span> <span class="sentence">Set up with&nbsp;you.</span></h2>
           </div>
-          <a class="text-link" href="pricing.html"
+          <a class="text-link" href="working-together.html"
             >How we work&nbsp;together <span aria-hidden="true">↗</span></a
           >
         </div>
@@ -458,8 +484,7 @@
               <div>
                 <h3>Bring your existing&nbsp;material.</h3>
                 <p>
-                  Resumes, project sheets, past proposals, and partner
-                  information become the starting&nbsp;point.
+                  Resumes, project sheets, past proposals, and partner information become the starting&nbsp;point.
                 </p>
               </div>
             </article>
@@ -468,8 +493,7 @@
               <div>
                 <h3>Make it work your&nbsp;way.</h3>
                 <p>
-                  We help organize your records, configure the criteria, and
-                  work through an initial pursuit&nbsp;together.
+                  We help organize your records, configure the criteria, and work through an initial pursuit&nbsp;together.
                 </p>
               </div>
             </article>
@@ -478,8 +502,7 @@
               <div>
                 <h3>Keep your records&nbsp;current.</h3>
                 <p>
-                  Add new projects and personnel records as your firm grows. We
-                  help with monitoring and ongoing&nbsp;support.
+                  Add new projects and personnel records as your firm grows. We help with monitoring and ongoing&nbsp;support.
                 </p>
               </div>
             </article>
@@ -496,11 +519,10 @@
           /><span>Real pursuits.<br />Practical&nbsp;experience.</span>
         </div>
         <div class="founder-copy">
-          <p class="eyebrow">Developed with a veteran owned&nbsp;business</p>
+          <p class="eyebrow">Developed with a veteran-owned&nbsp;business</p>
           <h2>Built alongside Alares&nbsp;Engineering.</h2>
           <p>
-            We’re developing the software with Alares Engineering, a veteran
-            owned business that understands the work behind a federal proposal.
+            We’re developing the software with Alares Engineering, a veteran-owned business that understands the work behind a federal proposal.
             Their process and feedback help shape what we&nbsp;build.
           </p>
           <p>
@@ -509,33 +531,33 @@
             the process and give every submission a stronger chance
             of&nbsp;winning.
           </p>
-          <a class="text-link" href="brand-directions.html"
+          <a class="text-link" href="story.html"
             >Our&nbsp;story <span aria-hidden="true">↗</span></a
           >
         </div>
       </section>
       <section class="section faq">
         <div>
-          <p class="eyebrow">A few things you might be&nbsp;wondering.</p>
+          <p class="eyebrow">A few things you might be&nbsp;wondering</p>
           <h2>Let’s make it&nbsp;clear.</h2>
         </div>
         <div class="faq-list">
           <details>
             <summary>
-              How is the software being&nbsp;developed?<span>+</span>
+              How is the software being&nbsp;developed?<span aria-hidden="true">+</span>
             </summary>
             <p>
-              We’re developing it alongside Alares Engineering, a veteran owned
+              We’re developing it alongside Alares Engineering, a veteran-owned
               business. Their proposal process and feedback shape how the
               software supports federal pursuits, from reviewing an opportunity
               to preparing the SF330 for a final&nbsp;check.
-              <a href="brand-directions.html"
-                >Read about the&nbsp;collaboration ↗</a
+              <a href="story.html"
+                >Read about the&nbsp;collaboration <span aria-hidden="true">↗</span></a
               >
             </p>
           </details>
           <details>
-            <summary>Who is Rhodo&nbsp;for?<span>+</span></summary>
+            <summary>Who is Rhodo&nbsp;for?<span aria-hidden="true">+</span></summary>
             <p>
               Small and independent architecture and engineering firms pursuing
               federal work, especially teams preparing SF330 qualifications. It
@@ -545,7 +567,7 @@
           </details>
           <details>
             <summary>
-              Does it write the whole proposal for&nbsp;us?<span>+</span>
+              Does it write the whole proposal for&nbsp;us?<span aria-hidden="true">+</span>
             </summary>
             <p>
               It prepares SF330 sections from your firm’s records and the
@@ -556,7 +578,7 @@
           </details>
           <details>
             <summary>
-              What do we need to get&nbsp;started?<span>+</span>
+              What do we need to get&nbsp;started?<span aria-hidden="true">+</span>
             </summary>
             <p>
               Your existing resumes, project sheets, past proposals, and partner
@@ -566,11 +588,11 @@
           </details>
           <details>
             <summary>
-              Is this another tool to manage on our&nbsp;own?<span>+</span>
+              Is this another tool to manage on our&nbsp;own?<span aria-hidden="true">+</span>
             </summary>
             <p>
               Rhodo is set up and supported with your firm. We help organize the
-              source material, configure your pursuit criteria, and agree the
+              source material, configure your pursuit criteria, and agree on the
               scope of ongoing monitoring and&nbsp;support.
             </p>
           </details>
@@ -579,7 +601,7 @@
 
       <section class="closing">
         <div>
-          <p class="eyebrow">Let’s put your experience to&nbsp;work.</p>
+          <p class="eyebrow">Let’s put your experience to&nbsp;work</p>
           <h2 class="closing-headline">
             <span>See what Rhodo</span> <span>could do for your firm.</span>
           </h2>
@@ -599,20 +621,20 @@
           ><img
             src="assets/rhodo-logo-light.svg?v=22"
             alt="Rhodo"
-            width="175"
-            height="39"
+            width="194"
+            height="64"
         /></a>
         <nav aria-label="Footer navigation">
-          <a href="system.html">The&nbsp;product ↗</a
-          ><a href="pricing.html">Working&nbsp;together ↗</a
-          ><a href="brand-directions.html">Our&nbsp;story ↗</a
-          ><a href="contact.html">Book a&nbsp;walkthrough ↗</a>
+          <a href="system.html">The&nbsp;product <span aria-hidden="true">↗</span></a
+          ><a href="working-together.html">Working&nbsp;together <span aria-hidden="true">↗</span></a
+          ><a href="story.html">Our&nbsp;story <span aria-hidden="true">↗</span></a
+          ><a href="contact.html">Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
       <div class="footer-bottom">
         <span>Built for independent A/E&nbsp;firms.</span
         ><span>© 2026&nbsp;Rhodo</span
-        ><a href="index.html#main">Back to&nbsp;top ↑</a>
+        ><a href="#main">Back to&nbsp;top <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
     <dialog id="trailer-dialog" aria-labelledby="film-title">
@@ -621,33 +643,43 @@
           <span class="eyebrow">Inside the&nbsp;product</span>
           <h2 id="film-title">One pursuit, from start to&nbsp;finish.</h2>
         </div>
-        <button class="dialog-close" aria-label="Close demo">✕</button>
+        <button class="dialog-close" aria-label="Close the product tour">✕</button>
       </div>
       <video
         id="full-video"
+        aria-label="Rhodo product tour"
         controls
         playsinline
         preload="none"
-        poster="assets/demo-poster.webp?v=30"
+        poster="assets/demo-poster.webp?v=31"
       >
-        <source src="assets/rhodo-demo.mp4?v=30" type="video/mp4" />
+        <source
+          media="(max-width: 800px), (max-height: 500px)"
+          src="assets/rhodo-demo-720.mp4?v=31"
+          type="video/mp4"
+        />
+        <source src="assets/rhodo-demo.mp4?v=31" type="video/mp4" />
         <track
           kind="captions"
-          src="assets/demo.vtt?v=30"
+          src="assets/demo.vtt?v=31"
           srclang="en"
           label="English"
         />
         Your browser does not support video.
-        <a href="assets/rhodo-demo.mp4?v=30">Download the&nbsp;demo</a>.
+        <a href="assets/rhodo-demo.mp4?v=31">Download the product&nbsp;tour</a>.
       </video>
-      <div class="feature-navigation" aria-label="Explore demo features">
+      <div
+        class="feature-navigation"
+        role="group"
+        aria-label="Product tour chapters"
+      >
         <div
           class="current-feature"
           role="status"
           aria-live="polite"
           aria-atomic="true"
         >
-          <span id="feature-position">Feature 1 of 11</span>
+          <span id="feature-position">Chapter 1 of 11</span>
           <strong id="feature-title">SAM.gov discovery</strong>
         </div>
         <div class="feature-navigation-actions">
@@ -657,14 +689,14 @@
             aria-controls="full-video"
             disabled
           >
-            <span aria-hidden="true">←</span> Previous feature
+            <span aria-hidden="true">←</span> Previous chapter
           </button>
           <button type="button" data-feature-next aria-controls="full-video">
-            Next feature <span aria-hidden="true">→</span>
+            Next chapter <span aria-hidden="true">→</span>
           </button>
         </div>
       </div>
-      <div class="chapters" role="group" aria-label="Jump to a demo feature">
+      <div class="chapters" role="group" aria-label="Jump to a chapter">
         <button aria-controls="full-video" data-time="0.0">
           0:00 SAM.gov discovery
         </button>
@@ -693,7 +725,7 @@
           1:32 Feedback and learning
         </button>
         <button aria-controls="full-video" data-time="112.4">
-          1:52 Your firm's knowledge
+          1:52 Your firm’s knowledge
         </button>
         <button aria-controls="full-video" data-time="126.92">
           2:06 Summary
@@ -701,8 +733,8 @@
       </div>
       <p class="demo-note">
         Actual dashboard interface with sample records. Narrated
-        feature walkthrough.
-        <a href="demo-transcript.html">Read the&nbsp;transcript ↗</a>
+        product tour.
+        <a href="demo-transcript.html">Read the&nbsp;transcript <span aria-hidden="true">↗</span></a>
       </p>
     </dialog>
   </body>
