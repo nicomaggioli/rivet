@@ -60,6 +60,54 @@
     });
   });
 
+  const teaser = document.querySelector("#teaser-video");
+  const teaserStage = document.querySelector("[data-teaser]");
+  if (teaser && teaserStage) {
+    const stagePlay = teaserStage.querySelector(".trailer-play");
+    // Native controls stay in the markup as a no-JS fallback.
+    teaser.controls = false;
+    const playTeaser = () => {
+      const hadFocus = document.activeElement === stagePlay;
+      teaserStage.classList.add("is-playing");
+      teaser.controls = true;
+      if (stagePlay) stagePlay.hidden = true;
+      if (hadFocus) teaser.focus();
+      teaser.play().catch(() => {});
+    };
+    document.querySelectorAll("[data-play-teaser]").forEach((button) =>
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!teaserStage.contains(button))
+          teaserStage.scrollIntoView({
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+            block: "center",
+          });
+        playTeaser();
+      }),
+    );
+    teaserStage.addEventListener("click", () => {
+      if (!teaserStage.classList.contains("is-playing")) playTeaser();
+    });
+    teaser.addEventListener("ended", () => {
+      const hadFocus = teaserStage.contains(document.activeElement);
+      teaserStage.classList.remove("is-playing");
+      teaser.controls = false;
+      if (stagePlay) {
+        stagePlay.hidden = false;
+        if (hadFocus) stagePlay.focus();
+      }
+      teaser.load();
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) teaser.pause();
+    });
+    new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) teaser.pause();
+    }).observe(teaser);
+  }
+
   const aiVideo = document.querySelector("#ai-dashboard-video");
   if (aiVideo) {
     const choices = [...document.querySelectorAll("[data-ai-clip]")];
@@ -82,6 +130,7 @@
         );
         narration.dataset.start = button.dataset.narration;
         aiVideo.load();
+        teaser?.pause();
         aiVideo.scrollIntoView({ block: "nearest", behavior: "instant" });
         aiVideo.play().catch(() => {});
       }),
@@ -169,6 +218,7 @@
       button.addEventListener("click", () => {
         lastFocus = button;
         aiVideo?.pause();
+        teaser?.pause();
         dialog.showModal();
         document.body.classList.add("modal-open");
         startVideo(Number(button.dataset.start || 0), "instant");
@@ -219,6 +269,16 @@
     video.addEventListener("seeking", syncFeature);
     updateFeature(0);
   }
+
+  // Only one narrated video plays at a time.
+  const narrated = [teaser, aiVideo, video].filter(Boolean);
+  narrated.forEach((v) =>
+    v.addEventListener("play", () =>
+      narrated.forEach((other) => {
+        if (other !== v) other.pause();
+      }),
+    ),
+  );
 
   const form = document.querySelector("#callform");
   if (form) {

@@ -23,7 +23,7 @@ node --check public/app.js
 
 ## Website
 
-Six static HTML pages use shared CSS and JavaScript with local images and fonts. No install or build step is required. The demo has captions, a transcript, chapter navigation, and feature closeups. The logo is the angular R selected by the founder.
+Six static HTML pages use shared CSS and JavaScript with local images and fonts. No install or build step is required. The home page opens with a short trailer; the full product tour has captions, a transcript, chapter navigation, and feature closeups. The logo is the angular R selected by the founder, and `brand.css` carries the brand system built from it.
 
 The source is in `public/`. Update those files to change the website. GitHub Pages publishes `public/` through `.github/workflows/pages.yml`. Every push to `main` validates and deploys the site. You can also run the workflow manually from the Actions tab. Only the contents of `public/` are uploaded to the website.
 

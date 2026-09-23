@@ -18,9 +18,19 @@
       content="AI assisted federal pursuits for architecture and engineering firms. Discover relevant SAM.gov opportunities, match your experience, and prepare stronger SF330 proposals."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rhodo" />
+    <meta
+      property="og:image"
+      content="https://nicomaggioli.github.io/rhodo/assets/brand/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/favicon.svg?v=22" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css?v=24" />
     <link rel="stylesheet" href="materials.css?v=22" />
+    <link rel="stylesheet" href="brand.css?v=5" />
     <link
       rel="preload"
       href="assets/fonts/geist.ttf"
@@ -28,7 +38,7 @@
       type="font/ttf"
       crossorigin
     />
-    <script src="app.js?v=27" defer></script>
+    <script src="app.js?v=29" defer></script>
     <link rel="canonical" href="https://nicomaggioli.github.io/rhodo/" />
     <meta property="og:url" content="https://nicomaggioli.github.io/rhodo/" />
   </head>
@@ -77,9 +87,9 @@
             making the&nbsp;decisions.
           </p>
           <div class="hero-actions">
-            <button class="button black" data-trailer>
+            <button class="button black" data-play-teaser>
               <span class="play-glyph" aria-hidden="true">▶</span> Watch the
-              walkthrough <span class="button-time">3:22</span>
+              trailer <span class="button-time" data-teaser-length>0:32</span>
             </button>
             <a class="hero-text-link" href="contact.html"
               >Book a&nbsp;walkthrough <span aria-hidden="true">↗</span></a
@@ -89,6 +99,41 @@
             >Explore the pursuit&nbsp;workflow
             <span aria-hidden="true">↓</span></a
           >
+        </div>
+      </section>
+      <section class="trailer-section" id="trailer" aria-label="Rhodo trailer">
+        <div class="trailer-screen" data-teaser>
+          <video
+            id="teaser-video"
+            controls
+            playsinline
+            preload="none"
+            poster="assets/rhodo-trailer-poster.webp?v=4"
+            aria-label="Rhodo trailer"
+          >
+            <source src="assets/rhodo-trailer.mp4?v=4" type="video/mp4" />
+            <track
+              kind="captions"
+              src="assets/rhodo-trailer.vtt?v=4"
+              srclang="en"
+              label="English"
+            />
+          </video>
+          <button class="trailer-play" type="button" data-play-teaser>
+            <span class="play-glyph" aria-hidden="true">▶</span
+            ><span
+              >Watch the trailer<small
+                ><span data-teaser-length>0:32</span> · Rhodo in brief</small
+              ></span
+            >
+          </button>
+        </div>
+        <div class="trailer-meta">
+          <p class="eyebrow">The short version</p>
+          <button type="button" data-trailer>
+            Watch the full demo <span data-demo-length>2:18</span>
+            <span aria-hidden="true">↗</span>
+          </button>
         </div>
       </section>
       <section
@@ -177,7 +222,7 @@
             >
               <div class="feature-image">
                 <img
-                  src="assets/demo-analysis.webp?v=8"
+                  src="assets/workflow-discover.webp?v=1"
                   alt="Real dashboard: bid recommendation, fit score and action items"
                   loading="lazy"
                 />
@@ -195,7 +240,7 @@
             >
               <div class="feature-image">
                 <img
-                  src="assets/demo-team.webp?v=8"
+                  src="assets/workflow-match.webp?v=1"
                   alt="Real dashboard: selected personnel and their project experience"
                   loading="lazy"
                 />
@@ -213,7 +258,7 @@
             >
               <div class="feature-image">
                 <img
-                  src="assets/demo-proposal.webp?v=8"
+                  src="assets/workflow-prepare.webp?v=1"
                   alt="Real dashboard: SF330 section status and compiled proposal"
                   loading="lazy"
                 />
@@ -259,12 +304,12 @@
                 data-ai-clip="analysis"
                 aria-pressed="true"
                 aria-controls="ai-dashboard-video"
-                data-src="assets/ai-analysis.mp4?v=2"
-                data-captions="assets/ai-analysis.vtt?v=1"
-                data-poster="assets/ai-analysis.webp?v=3"
+                data-src="assets/ai-analysis.mp4?v=7"
+                data-captions="assets/ai-analysis.vtt?v=7"
+                data-poster="assets/ai-analysis.webp?v=6"
                 data-title="AI opportunity analysis"
                 data-caption="Rhodo reads the solicitation and shows a bid recommendation, strengths, and gaps for your review."
-                data-narration="31.584"
+                data-narration="31.35"
               >
                 <span>01</span>Analyze the&nbsp;fit
               </button>
@@ -273,12 +318,12 @@
                 data-ai-clip="matching"
                 aria-pressed="false"
                 aria-controls="ai-dashboard-video"
-                data-src="assets/ai-matching.mp4?v=2"
-                data-captions="assets/ai-matching.vtt?v=1"
-                data-poster="assets/ai-matching.webp?v=3"
+                data-src="assets/ai-matching.mp4?v=7"
+                data-captions="assets/ai-matching.vtt?v=7"
+                data-poster="assets/ai-matching.webp?v=6"
                 data-title="AI project and team recommendations"
                 data-caption="Review suggested projects, compare personnel, and see the experience connecting your proposed team."
-                data-narration="51.34"
+                data-narration="45.91"
               >
                 <span>02</span>Match projects and&nbsp;people
               </button>
@@ -287,32 +332,32 @@
                 data-ai-clip="feedback"
                 aria-pressed="false"
                 aria-controls="ai-dashboard-video"
-                data-src="assets/ai-feedback.mp4?v=2"
-                data-captions="assets/ai-feedback.vtt?v=1"
-                data-poster="assets/ai-feedback.webp?v=3"
+                data-src="assets/ai-feedback.mp4?v=7"
+                data-captions="assets/ai-feedback.vtt?v=7"
+                data-poster="assets/ai-feedback.webp?v=6"
                 data-title="AI corrections and saved feedback"
                 data-caption="Tell the assistant what needs changing, then save feedback that can guide future proposal drafts."
-                data-narration="108.818"
+                data-narration="92.8"
               >
                 <span>03</span>Give feedback to&nbsp;AI
               </button>
             </div>
             <video
               id="ai-dashboard-video"
-              width="3840"
-              height="2160"
+              width="2560"
+              height="1440"
               controls
               playsinline
               preload="none"
-              poster="assets/ai-analysis.webp?v=3"
-              src="assets/ai-analysis.mp4?v=2"
+              poster="assets/ai-analysis.webp?v=6"
+              src="assets/ai-analysis.mp4?v=7"
               aria-label="AI opportunity analysis"
               aria-describedby="ai-dashboard-caption"
             >
               <track
                 id="ai-dashboard-captions"
                 kind="captions"
-                src="assets/ai-analysis.vtt?v=1"
+                src="assets/ai-analysis.vtt?v=7"
                 srclang="en"
                 label="English"
               />
@@ -332,7 +377,7 @@
               <button
                 class="text-link"
                 data-trailer
-                data-start="31.584"
+                data-start="31.35"
                 data-ai-narration
               >
                 See the full&nbsp;walkthrough <span aria-hidden="true">↗</span>
@@ -345,7 +390,7 @@
         <div class="section film-inner">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Inside Rhodo / 3:22</p>
+              <p class="eyebrow">Inside Rhodo / 2:18</p>
               <h2>See a pursuit come&nbsp;together.</h2>
             </div>
             <p>
@@ -359,27 +404,27 @@
             aria-label="Play the full product walkthrough"
           >
             <img
-              src="assets/demo-poster.webp?v=22"
-              width="2400"
-              height="1350"
+              src="assets/demo-poster.webp?v=30"
+              width="1920"
+              height="1080"
               alt="Rhodo dashboard showing the opportunity pipeline"
               loading="lazy"
             /><span class="demo-play"
               ><span class="play-glyph" aria-hidden="true">▶</span
               ><span
                 >Watch the full walkthrough<small
-                  >3:22 · 4K · Narrated dashboard&nbsp;tour</small
+                  >2:18 · Narrated dashboard&nbsp;tour</small
                 ></span
               ><span class="demo-arrow" aria-hidden="true">↗</span></span
             >
           </button>
           <div class="film-shortcuts" aria-label="Start with a feature">
-            <button data-trailer data-start="31.584">
+            <button data-trailer data-start="31.35">
               0:31 <span>AI&nbsp;analysis</span> ↗</button
-            ><button data-trailer data-start="62.077">
-              1:02 <span>Team&nbsp;selection</span> ↗</button
-            ><button data-trailer data-start="108.818">
-              1:48 <span>Feedback&nbsp;&amp;&nbsp;learning</span> ↗</button
+            ><button data-trailer data-start="53.33">
+              0:53 <span>Team&nbsp;selection</span> ↗</button
+            ><button data-trailer data-start="92.8">
+              1:32 <span>Feedback&nbsp;&amp;&nbsp;learning</span> ↗</button
             ><a href="demo-transcript.html">Read the&nbsp;transcript ↗</a>
           </div>
         </div>
@@ -583,17 +628,17 @@
         controls
         playsinline
         preload="none"
-        poster="assets/demo-poster.webp?v=22"
+        poster="assets/demo-poster.webp?v=30"
       >
-        <source src="assets/rhodo-demo.mp4?v=25" type="video/mp4" />
+        <source src="assets/rhodo-demo.mp4?v=30" type="video/mp4" />
         <track
           kind="captions"
-          src="assets/demo.vtt?v=25"
+          src="assets/demo.vtt?v=30"
           srclang="en"
           label="English"
         />
         Your browser does not support video.
-        <a href="assets/rhodo-demo.mp4?v=25">Download the&nbsp;demo</a>.
+        <a href="assets/rhodo-demo.mp4?v=30">Download the&nbsp;demo</a>.
       </video>
       <div class="feature-navigation" aria-label="Explore demo features">
         <div
@@ -602,8 +647,8 @@
           aria-live="polite"
           aria-atomic="true"
         >
-          <span id="feature-position">Feature 1 of 14</span>
-          <strong id="feature-title">SAM.gov</strong>
+          <span id="feature-position">Feature 1 of 11</span>
+          <strong id="feature-title">SAM.gov discovery</strong>
         </div>
         <div class="feature-navigation-actions">
           <button
@@ -620,47 +665,42 @@
         </div>
       </div>
       <div class="chapters" role="group" aria-label="Jump to a demo feature">
-        <button aria-controls="full-video" data-time="0.0">0:00 SAM.gov</button>
-        <button aria-controls="full-video" data-time="18.223">
-          0:18 Pipeline
+        <button aria-controls="full-video" data-time="0.0">
+          0:00 SAM.gov discovery
         </button>
-        <button aria-controls="full-video" data-time="31.584">
+        <button aria-controls="full-video" data-time="18.73">
+          0:18 Your pipeline
+        </button>
+        <button aria-controls="full-video" data-time="31.35">
           0:31 AI fit analysis
         </button>
-        <button aria-controls="full-video" data-time="51.34">
-          0:51 Projects
+        <button aria-controls="full-video" data-time="45.91">
+          0:45 Recommended projects
         </button>
-        <button aria-controls="full-video" data-time="62.077">1:02 Team</button>
-        <button aria-controls="full-video" data-time="72.732">
-          1:12 Experience matrix
+        <button aria-controls="full-video" data-time="53.33">
+          0:53 The proposed team
         </button>
-        <button aria-controls="full-video" data-time="82.64">
-          1:22 Generators & documents
+        <button aria-controls="full-video" data-time="60.79">
+          1:00 Experience matrix
         </button>
-        <button aria-controls="full-video" data-time="97.242">
-          1:37 SF330 review
+        <button aria-controls="full-video" data-time="69.86">
+          1:09 Resumes and sections
         </button>
-        <button aria-controls="full-video" data-time="108.818">
-          1:48 Feedback & learning
+        <button aria-controls="full-video" data-time="82.88">
+          1:22 The SF330 package
         </button>
-        <button aria-controls="full-video" data-time="140.748">
-          2:20 Firm records
+        <button aria-controls="full-video" data-time="92.8">
+          1:32 Feedback and learning
         </button>
-        <button aria-controls="full-video" data-time="156.612">
-          2:36 Uploads
+        <button aria-controls="full-video" data-time="112.4">
+          1:52 Your firm's knowledge
         </button>
-        <button aria-controls="full-video" data-time="166.481">
-          2:46 Scoring & metrics
-        </button>
-        <button aria-controls="full-video" data-time="176.942">
-          2:56 Supporting tools
-        </button>
-        <button aria-controls="full-video" data-time="188.872">
-          3:08 Summary
+        <button aria-controls="full-video" data-time="126.92">
+          2:06 Summary
         </button>
       </div>
       <p class="demo-note">
-        Actual dashboard interface, rebranded with sample records. Narrated
+        Actual dashboard interface with sample records. Narrated
         feature walkthrough.
         <a href="demo-transcript.html">Read the&nbsp;transcript ↗</a>
       </p>
