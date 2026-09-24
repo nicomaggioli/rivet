@@ -209,7 +209,7 @@ textarea:focus-visible {
 }
 .brand {
   display: block;
-  width: 130px;
+  width: 111.7px;
   flex-shrink: 0;
 }
 .brand img {
@@ -1089,7 +1089,7 @@ dialog video {
     border-radius: 10px;
   }
   .brand {
-    width: 118px;
+    width: 101.4px;
   }
   .desktop-nav {
     gap: 16px;
@@ -1226,7 +1226,7 @@ dialog video {
     display: none;
   }
   .footer-top img {
-    width: 135px;
+    width: 116px;
   }
   .footer-top nav a {
     min-height: 44px;
@@ -1495,7 +1495,7 @@ dialog video {
     font-size: 10px;
   }
   .footer-top img {
-    width: 123px;
+    width: 105.7px;
   }
   .footer-bottom span:first-child {
     max-width: 115px;

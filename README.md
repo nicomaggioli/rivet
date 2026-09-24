@@ -1,10 +1,10 @@
-# Rhodo
+# Rivet
 
 A website for independent architecture and engineering firms, with a narrated product tour showing SAM.gov discovery, AI analysis, team selection, and SF330 preparation.
 
-Website: https://nicomaggioli.github.io/rhodo/
+Website: https://nicomaggioli.github.io/rivet/
 
-Source repository: https://github.com/nicomaggioli/rhodo
+Source repository: https://github.com/nicomaggioli/rivet
 
 ## Run locally
 

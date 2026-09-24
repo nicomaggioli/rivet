@@ -1,4 +1,4 @@
-/* Rhodo marketing site. No dependencies. Set contactEmail to enable mail drafts. */
+/* Rivet marketing site. No dependencies. Set contactEmail to enable mail drafts. */
 (() => {
   "use strict";
   const config = { contactEmail: "" };
@@ -340,7 +340,7 @@
       e.preventDefault();
       if (!form.reportValidity()) return;
       const d = new FormData(form);
-      const text = `Rhodo walkthrough request\n\nName: ${d.get("name")}\nEmail: ${d.get("email")}\nFirm: ${d.get("firm")}\nTeam size: ${d.get("team_size") || "Not specified"}\nDiscipline: ${d.get("discipline") || "Not specified"}\n\nCurrent challenge:\n${d.get("workflow")}`;
+      const text = `Rivet walkthrough request\n\nName: ${d.get("name")}\nEmail: ${d.get("email")}\nFirm: ${d.get("firm")}\nTeam size: ${d.get("team_size") || "Not specified"}\nDiscipline: ${d.get("discipline") || "Not specified"}\n\nCurrent challenge:\n${d.get("workflow")}`;
       request.value = text;
       result.hidden = false;
       // Show the whole request without an inner scroll (up to a point).
@@ -351,7 +351,7 @@
         ?.focus({ preventScroll: true });
       if (validEmail) {
         const a = document.createElement("a");
-        a.href = `mailto:${config.contactEmail}?subject=${encodeURIComponent("Rhodo walkthrough: " + d.get("firm"))}&body=${encodeURIComponent(text)}`;
+        a.href = `mailto:${config.contactEmail}?subject=${encodeURIComponent("Rivet walkthrough: " + d.get("firm"))}&body=${encodeURIComponent(text)}`;
         a.click();
         document.querySelector("#result-message").textContent =
           "Your mail app should open with a draft. Review and send it there. If it does not open, copy or save the request below.";
@@ -389,7 +389,7 @@
       );
       const link = document.createElement("a");
       link.href = url;
-      link.download = "rhodo-walkthrough-request.txt";
+      link.download = "rivet-walkthrough-request.txt";
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     });

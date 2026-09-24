@@ -1,4 +1,4 @@
-name: Publish Rhodo
+name: Publish Rivet
 
 on:
   push:

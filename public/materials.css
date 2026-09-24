@@ -1,4 +1,4 @@
-/* Rhodo: original architectural imagery, restrained editorial layouts. */
+/* Rivet: original architectural imagery, restrained editorial layouts. */
 :root {
   --stone: #f4f6f5;
   --sage: #087b38;
@@ -19,7 +19,7 @@ figure {
   gap: 28px;
 }
 .brand {
-  width: 132px;
+  width: 113.4px;
 }
 .desktop-nav {
   gap: 30px;
@@ -928,7 +928,7 @@ button.text-link {
     padding: 10px 15px 10px 19px;
   }
   .brand {
-    width: 124px;
+    width: 106.5px;
   }
   .architecture-hero {
     padding-top: 137px;
